@@ -1,0 +1,88 @@
+.logo {
+    height: auto;
+    width: 80px;
+    margin-left: 30px;
+}
+
+.info {
+    height: auto;
+    width: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#infoButton {
+    background-color: transparent;
+       float: right;
+       border: none;
+
+}
+
+#infoButton:active {
+outline: none;
+border: none;
+}
+
+#infoButton:focus {outline:0;}
+
+
+#albumInput {
+ width: 60%;
+}
+.inputField {
+    text-align: center;
+    text-align: -webkit-center;
+}
+  .row-centered {
+    text-align:center;
+    margin-top: 20px;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.collectinfo  {
+    color: pink;
+    font-size: 30px;
+}
+
+.img-rounded {
+    border-radius: 50%;
+    border: 3px #C65D5D solid;
+}
+
+#albumButton {
+    border: none;
+    background-color: white;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+h1 {
+    text-align: center !important;
+    margin-bottom: 20px;
+}
+
+.addButton {
+    background-color: #333;
+    border: 2px solid #333;
+    color: white;
+}
+
+.removeButton {
+     background-color: #333;
+    border: 2px solid #333;
+    color: white;
+}
+
+.wrapper-center {
+    text-align: center;
+    text-align: -webkit-center;
+}
