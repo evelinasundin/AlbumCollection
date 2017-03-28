@@ -1,3 +1,7 @@
+body {
+    overflow-x:hidden;
+}
+
 .logo {
     height: auto;
     width: 80px;
@@ -53,7 +57,6 @@ border: none;
 
 .img-rounded {
     border-radius: 50%;
-    border: 3px #C65D5D solid;
 }
 
 #albumButton {
@@ -63,6 +66,7 @@ border: none;
 
 .text-centered {
     text-align: center;
+    margin-top: 20px;
 }
 
 h1 {
@@ -85,4 +89,54 @@ h1 {
 .wrapper-center {
     text-align: center;
     text-align: -webkit-center;
+}
+
+.playLink {
+    margin-top: 20px;
+}
+
+/*overlay image*/
+
+.image-wrapper {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+
+}
+
+.image-wrapper img {
+  height: 100%; 
+  width: 100%;
+}
+
+
+
+.image-wrapper .image-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(198, 93, 93, 0.85);
+  color: #fff;
+  display: none;
+}
+
+.image-wrapper:hover .image-overlay {
+   display: block;
+
+}
+
+
+.image-wrapper .image-overlay .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 20px;
+  width: 150px;
+  margin-top: -10px;
+  margin-left: -75px;
 }
