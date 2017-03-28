@@ -208,6 +208,12 @@ var Module = (function() {
     }
 
 
+    function cool () {
+    	console.log(bindClickRemove());
+    	
+    }
+
+
 
 
 
