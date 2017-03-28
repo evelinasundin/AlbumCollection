@@ -130,29 +130,29 @@ var Module = (function() {
 
     // information when you hoover over image
 
-   let getAlbumInfo = (function() {
+   // let getAlbumInfo = (function() {
 
-    	let albumValue =
+   //  	let albumValue =
 
-    	let artistValue =
+   //  	let artistValue =
 
     	
-        $.ajax({
-            method: 'GET',
-            url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist="+artistValue+"&album="+albumValue+"&format=json",
-            dataType: 'JSON',
-            success: function(data) {
-                $('#success #albumName').html(data.album.name);
-                $('#success #artistName').html(data.album.artist);
-                $('#success #albumImage').html('<img src="' + data.album.image[3]['#text'] + '" />');
-                console.log(data);
-                // $('#success #artistBio').html(data.artist.bio.content);
-            },
-            error: function(code, message) {
-                $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
-            }
-        });
-    })
+   //      $.ajax({
+   //          method: 'GET',
+   //          url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist="+artistValue+"&album="+albumValue+"&format=json",
+   //          dataType: 'JSON',
+   //          success: function(data) {
+   //              $('#success #albumName').html(data.album.name);
+   //              $('#success #artistName').html(data.album.artist);
+   //              $('#success #albumImage').html('<img src="' + data.album.image[3]['#text'] + '" />');
+   //              console.log(data);
+   //              // $('#success #artistBio').html(data.artist.bio.content);
+   //          },
+   //          error: function(code, message) {
+   //              $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
+   //          }
+   //      });
+   //  })
 
 
 
@@ -208,10 +208,10 @@ var Module = (function() {
     }
 
 
-    function cool () {
-    	console.log(bindClickRemove());
+    // function cool () {
+    // 	console.log(bindClickRemove());
     	
-    }
+    // }
 
 
 
