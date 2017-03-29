@@ -1,75 +1,6 @@
 // API key: 596bfe5bae097e1c9f7dd354901bc20c
 
-var Module = (function() {
-
-
-
-
-    // var albumValue = $('#albumInput').val();
-    // console.log(albumValue);
-
-
-    // let albumValue = document.getElementById('albumInput');
-
-    // document.querySelector('form.createAlbumStack').addEventListener('submit', function (e) {
-
-    //     //prevent the normal submission of the form
-    //     e.preventDefault();
-
-    //     console.log(albumValue.value);    
-    // });
-
-    // prints out album 
-
-
-    //     $.ajax({
-    //         method: 'GET',
-    //         url: 'http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist=Cher&album=Believe&format=json',
-    //         dataType: 'JSON',
-    //         success: function(data) {
-    //             $('#success #albumName').html(data.album.name);
-    //             $('#success #artistName').html(data.album.artist);
-    //             $('#success #albumImage').html('<img src="' + data.album.image[3]['#text'] + '" />');
-    //             console.log(data);
-    //             // $('#success #artistBio').html(data.artist.bio.content);
-    //         },
-    //         error: function(code, message) {
-    //             $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
-    //         }
-    //     });
-    // })
-
-
-    // getAlbumInfo();
-
-    // console logar album ovan för att se hur det ser ut 
-
-    // let consoleAlbumInfo = (function() {
-    //     $.ajax({
-    //         method: 'GET',
-    //         url: 'http://ws.audioscrobbler.com/2.0/',
-    //         data: 'method=album.getinfo&' +
-    //             'api_key=596bfe5bae097e1c9f7dd354901bc20c&' +
-    //             'artist=DVSN&' +
-    //             'album=sept 5th&' +
-    //             'format=json',
-    //         dataType: 'JSON',
-    //         success: function(response) {
-    //             data = response;
-    //             console.log(data);
-    //             // $('#success #albumName').html(data.album.name);
-    //             // $('#success #artistName').html(data.album.artist);
-    //             // $('#success #albumImage').html('<img src="' + data.album.image[3]['#text'] + '" />');
-    //             // $('#success #artistBio').html(data.artist.bio.content);
-    //         },
-    //         error: function(code, message) {
-    //             $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
-    //         }
-    //     });
-    // })
-
-    // consoleAlbumInfo();
-
+var Module = (function() { 
 
     let showChosenAlbum = function() {
         let albumValue = document.getElementById("albumInput").value;
@@ -89,17 +20,18 @@ var Module = (function() {
                 dataType: 'JSON',
                 success: function(response) {
                     data = response;
+                    console.log(listOfAlbums);
                     listOfAlbums.innerHTML = "";
                     let albums = response.results.albummatches.album; //to shorten code in html chunk 
                     console.log(data);
-                    var html = "";
-                    for (var i = 0; i < albums.length; i++) {
+                    let html = "";
+                    for (let i = 0; i < albums.length; i++) {
                         html += `
                    <div class = "col-xs-12 col-sm-6 col-md-6 col-lg-3">
                     <div class="image-wrapper">
- 					 <span class="image-overlay">
-   		 <span class="content">I'm an overlay.</span>
- 			 </span>
+ 					 <div class="image-overlay">
+   		 <div id="${i}" class="content"></div>
+ 			 </div>
   			 <div class=hover-wrap><p><img class="img-rounded" src="${albums[i].image[3]['#text']}"></p></div>
 			</div>
         <div class ="text-centered">
@@ -110,10 +42,12 @@ var Module = (function() {
 		<button class="addButton btn btn-secondary" id="${i}" type="button">Add to Collection</button>
 		<button class="removeButton btn btn-secondary" id="${i}" type="button">Remove</button>
 		</div>
-		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink" height="50px" width="50px"></a> 
+		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
 		</div>
 		</div>`;
-                    }
+                        //sends artist and album name as parameters to albuminfo 
+                        getAlbumInfo(albums[i].artist, albums[i].name, i);
+                    } //slut på for-loop
                     listOfAlbums.innerHTML = html;
                     bindClick();
                     bindClickRemove();
@@ -130,30 +64,41 @@ var Module = (function() {
 
     // information when you hoover over image
 
-   // let getAlbumInfo = (function() {
+    let getAlbumInfo = function(artistValue, albumValue, i) {
 
-   //  	let albumValue =
+        $.ajax({
+            method: 'GET',
+            url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist=" + artistValue + "&album=" + albumValue + "&format=json",
+            dataType: 'JSON',
+            success: function(response) {
+                data = response;
+                console.log(data);
+                let content = document.getElementById(i);
+                console.log(content);
+                content.innerHTML = "";
+                let info = response.album;
+                console.log(response.album);
+                let html = "";
+                html += `
+            	<div class = "texthover">
+		<p><b>Plays :</b> ${info.playcount}</p>
+		<p><b>Published :</b> ${ info.wiki ? info.wiki.published : ''}</p>
+		</br>
+		</div>
+		`;
 
-   //  	let artistValue =
+                //console.log(data);
+                content.innerHTML = html;
+                //console.log(content);
+            },
+            error: function(code, message) {
+                $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
+            }
+        });
+    }
 
-    	
-   //      $.ajax({
-   //          method: 'GET',
-   //          url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist="+artistValue+"&album="+albumValue+"&format=json",
-   //          dataType: 'JSON',
-   //          success: function(data) {
-   //              $('#success #albumName').html(data.album.name);
-   //              $('#success #artistName').html(data.album.artist);
-   //              $('#success #albumImage').html('<img src="' + data.album.image[3]['#text'] + '" />');
-   //              console.log(data);
-   //              // $('#success #artistBio').html(data.artist.bio.content);
-   //          },
-   //          error: function(code, message) {
-   //              $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
-   //          }
-   //      });
-   //  })
 
+ 
 
 
     //function that appends chosen album to list1 in 
@@ -162,21 +107,38 @@ var Module = (function() {
         console.log(id);
         let getList = document.getElementById("list1");
         getList.appendChild(id);
+       	console.log(localStorage.getItem('album'));
 
     })
 
     // function that removes album
 
-    let removeAlbum = (function(removeid) {
+    let removeAlbumInCollection = function(removeid) {
+        console.log(removeid.parentElement);
+
+        removeid.parentElement.removeChild(removeid);
+
+    }
+
+     let removeAlbum = function(removeid) {
         console.log(removeid);
 
-        document.getElementById("list1").removeChild(removeid);
 
-    })
+        document.getElementById("listOfAlbums").removeChild(removeid);
+    }
 
 
 
-    console.log(showChosenAlbum());
+ // function storeItems () {
+ // 	localStorage.setItem("albumcollection"); 
+
+ //  	document.getElementById("list1").innerHTML = localStorage.getItem("albumcollection");
+ // } 
+
+ //    storeItems();
+
+
+
 
     //function that binds click to all add buttons
 
@@ -202,7 +164,8 @@ var Module = (function() {
         let removebuttons = document.getElementsByClassName('removeButton');
         for (let i = 0; i < removebuttons.length; i++) {
             removebuttons[i].addEventListener('click', function() {
-                removeAlbum(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
+                removeAlbumInCollection(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
+            //removeAlbum(this.parentElement.parentElement.parentElement);
             })
         }
     }
@@ -210,11 +173,55 @@ var Module = (function() {
 
     // function cool () {
     // 	console.log(bindClickRemove());
-    	
+
     // }
 
+//     function loadingServer () {
+
+//     	$(document).ready(function(){
+//     $(document).ajaxStart(function(){
+//         $("#wait").css("display", "block");
+//     });
+//     $(document).ajaxComplete(function(){
+//         $("#wait").css("display", "none");
+//     });
+//     $("albumButton").click(function(){
+//         $("#list1").load("demo_ajax_load.asp");
+//     });
+// });
+
+//     }
+
+    function modal() {
+
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("infoButton");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
 
 
+    modal();
 
 
 
