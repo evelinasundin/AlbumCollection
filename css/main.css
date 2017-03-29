@@ -24,8 +24,33 @@ body {
 #infoButton:focus {
   outline: 0; }
 
+#userInput {
+  width: 60%;
+  border-radius: 100px;
+  border: 1px #333 solid;
+  height: 40px;
+  text-align: center; }
+
 #albumInput {
-  width: 60%; }
+  width: 60%;
+  border-radius: 100px;
+  border: 1px #333 solid;
+  height: 40px;
+  text-align: center; }
+
+#albumInput:active {
+  outline: none;
+  border: none; }
+
+#albumInput:focus {
+  outline: 0; }
+
+#userInput:active {
+  outline: none;
+  border: none; }
+
+#userInput:focus {
+  outline: 0; }
 
 .inputField {
   text-align: center;
@@ -53,6 +78,24 @@ body {
 #albumButton {
   border: none;
   background-color: white; }
+
+#albumButton:active {
+  outline: none;
+  border: none; }
+
+#albumButton:focus {
+  outline: 0; }
+
+#userButton {
+  border: none;
+  background-color: white; }
+
+#userButton:active {
+  outline: none;
+  border: none; }
+
+#userButton:focus {
+  outline: 0; }
 
 .text-centered {
   text-align: center;
@@ -141,7 +184,7 @@ h1 {
   /* Enable scroll if needed */
   background-color: black;
   /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(198, 93, 93, 0.9);
   /* Black w/ opacity */ }
 
 /* Modal Content/Box */
@@ -156,7 +199,7 @@ h1 {
 
 /* The Close Button */
 .close {
-  color: #aaa;
+  color: #333;
   float: right;
   font-size: 28px;
   font-weight: bold; }
@@ -167,17 +210,17 @@ h1 {
   text-decoration: none;
   cursor: pointer; }
 
-.loadingserver {
-  display: none;
-  width: 100px;
-  height: auto;
-  position: absolute;
-  padding: 2px;
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px; }
+h5 {
+  text-align: center; }
+
+h3 {
+  text-align: center; }
+
+#loadgif {
+  height: 150px;
+  width: auto; }
+
+.text-center {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

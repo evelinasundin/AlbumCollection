@@ -13,39 +13,49 @@
 <body>
     <!-- logo -->
     <img class="logo" src="img/albumsync.png"></img>
-
-    <button id="infoButton"><img class="info" src="img/info.svg"></img></button>
-
+    <button id="infoButton"><img class="info" src="img/info.svg"></img>
+    </button>
     <!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
-    <!-- search form -->
-        <div class ="inputField">
-        <input type="text" id="albumInput" maxlength="70" placeholder="Search...">
-        <button id="albumButton"><img height="20px" width="20px" src= "img/search.svg"></button> 
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img height="60px" src="img/albumsync.png"></img>
+            <div class="text-center">
+            <h3>Welcome to Album Sync!</h3>
+            </br><p> Search any album or artist in the first input field to get albums sorted by relevance. To specify - write both artist and album.</br>
+            Want to get personal? Type your lastfm username in the second input field to match your scrobbles with your most played album to be able to add these to your collection. If you dont have a lastfm account. Get it <a href="https://www.last.fm/sv/join">here</a> and start scrobbling your music.</br></br>
+            Use the grey buttons to remove or add the albums to your collection. 
+            See the pink play button? Press it and it will take you to lastfms website from where you can see more information about the album and to listen to the music. </br>
+            It's not harder than that! </br>
+            <h3>Enjoy the music!</h3>
+            </p>
+            </div>
         </div>
+    </div>
+    <!-- search form -->
+    <h5> Search album or artist, to specify - type both:</h5>
+    <div class="inputField">
+        <input type="text" id="albumInput" maxlength="70" placeholder="Search...">
+        <button id="albumButton"><img height="20px" width="20px" src="img/search.svg"></button>
+    </div>
+    <h5> Type your username to get your most listened albums: </h5>
+    <div class="inputField">
+        <input type="text" id="userInput" maxlength="70" placeholder="Username...">
+        <button id="userButton"><img height="20px" width="20px" src="img/search.svg"></button>
+    </div>
     <!-- album collection -->
-
-
-    <div class = "row row-centered">
-    <div class = "d-flex" id="listOfAlbums"> </div>
+    <div class="row row-centered">
+        <div class="d-flex" id="listOfAlbums"> </div>
+        <img id="loadgif" src="img/Loading_icon.gif" style="display: none;">
     </div>
     </div>
-
     <section>
-    <div>
-    <h1>Your collection:</h1>
-    </div>
-    <div id ="list1"></div>
+        <div class="row row-centered">
+            <h1>Your collection:</h1>
+            <div id="list1"></div>
+        </div>
     </section>
-
 </body>
 <!-- Javascript and jquery -->
 <script src="https://code.jquery.com/jquery-2.2.1.js" integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc=" crossorigin="anonymous"></script>

@@ -1,13 +1,19 @@
 // API key: 596bfe5bae097e1c9f7dd354901bc20c
 
-var Module = (function() { 
+var Module = (function() {
 
     let showChosenAlbum = function() {
         let albumValue = document.getElementById("albumInput").value;
 
+        //start load
+
+        $(document).ajaxStart(function() {
+            $("#loadgif").show();
+        });
+
         console.log(albumValue);
 
-        //if the album value input is empty - return false otherwise run the code
+        //if the album value input is empty return false - otherwise run the code
 
         if (albumValue === '') {
             return false;
@@ -45,12 +51,16 @@ var Module = (function() {
 		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
 		</div>
 		</div>`;
-                        //sends artist and album name as parameters to albuminfo 
+                        //sends artist, album name and index as parameters to albuminfo 
                         getAlbumInfo(albums[i].artist, albums[i].name, i);
                     } //slut på for-loop
                     listOfAlbums.innerHTML = html;
                     bindClick();
                     bindClickRemove();
+//finish load 
+                    $(document).ajaxComplete(function () {
+   $("#loadgif").hide();
+});
 
                 },
                 error: function(code, message) {
@@ -62,9 +72,115 @@ var Module = (function() {
     }
 
 
+      let showUserTopAlbum = function() {
+        let userValue = document.getElementById("userInput").value;
+
+        $(document).ajaxStart(function() {
+            $("#loadgif").show();
+        });
+
+        //if the user value input is empty return false - otherwise run the code
+
+        if (userValue === '') {
+            return false;
+            console.log(false);
+        } else {
+
+
+
+            $.ajax({
+                method: 'GET',
+                url: 'https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=' + userValue + '&api_key=596bfe5bae097e1c9f7dd354901bc20c&format=json&limit=4',
+                dataType: 'JSON',
+                success: function(response) {
+                    data = response;
+                    listOfAlbums.innerHTML = "";
+                    let albums = response.topalbums.album; //to shorten code in html chunk 
+                    console.log(data);
+                    let html = "";
+                    for (let i = 0; i < albums.length; i++) {
+                        html += `
+                   <div class = "col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                    <div class="image-wrapper">
+ 					 <div class="image-overlay">
+   		 <div id="${i}" class="content"></div>
+ 			 </div>
+  			 <div class=hover-wrap><p><img class="img-rounded" src="${albums[i].image[3]['#text']}"></p></div>
+			</div>
+        <div class ="text-centered">
+		<p class ="text-centered"><b>Artist :</b> ${albums[i].artist.name}</p>
+		<p class ="text-centered"><b>Album Name :</b> ${albums[i].name}</p></br>
+		</div>
+		<div class ="wrapper-center">
+		<button class="addButton btn btn-secondary" id="${i}" type="button">Add to Collection</button>
+		<button class="removeButton btn btn-secondary" id="${i}" type="button">Remove</button>
+		</div>
+		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
+		</div>
+		</div>`;
+                        //sends artist and album name as parameters to albuminfo 
+                         getUserAlbumInfo(albums[i].artist.name, albums[i].name, i);
+                    } //slut på for-loop
+                    listOfAlbums.innerHTML = html;
+                    bindClick();
+                    bindClickRemove();
+
+                    $(document).ajaxComplete(function () {
+   $("#loadgif").hide();
+});
+
+                },
+                error: function(code, message) {
+                    $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
+                }
+            });
+        } //slut på else 
+
+    }
+
+
+    showUserTopAlbum();
+
+   
+
+
     // information when you hoover over image
 
     let getAlbumInfo = function(artistValue, albumValue, i) {
+
+        $.ajax({
+            method: 'GET',
+            url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=596bfe5bae097e1c9f7dd354901bc20c&artist=" + artistValue + "&album=" + albumValue + "&format=json",
+            dataType: 'JSON',
+            success: function(response) {
+                data = response;
+                console.log(data);
+                let content = document.getElementById(i);
+                console.log(content);
+                content.innerHTML = "";
+                let info = response.album;
+                let html = "";
+                html += `
+            	<div class = "texthover">
+		<p><b>Plays :</b> ${info.playcount}</p>
+		<p><b>Published :</b> ${ info.wiki ? info.wiki.published : ''}</p>
+		</br>
+		</div>
+		`;
+
+                //console.log(data);
+                content.innerHTML = html;
+                //console.log(content);
+            },
+            error: function(code, message) {
+                $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
+            }
+        });
+    }
+
+    	//user specified info when you hoover over image 
+
+       let getUserAlbumInfo = function(artistValue, albumValue, i) {
 
         $.ajax({
             method: 'GET',
@@ -98,7 +214,7 @@ var Module = (function() {
     }
 
 
- 
+
 
 
     //function that appends chosen album to list1 in 
@@ -107,7 +223,7 @@ var Module = (function() {
         console.log(id);
         let getList = document.getElementById("list1");
         getList.appendChild(id);
-       	console.log(localStorage.getItem('album'));
+        console.log(localStorage.getItem('album'));
 
     })
 
@@ -120,24 +236,12 @@ var Module = (function() {
 
     }
 
-     let removeAlbum = function(removeid) {
-        console.log(removeid);
+    // let removeAlbum = function(removeid) {
+    //     console.log(removeid);
 
 
-        document.getElementById("listOfAlbums").removeChild(removeid);
-    }
-
-
-
- // function storeItems () {
- // 	localStorage.setItem("albumcollection"); 
-
- //  	document.getElementById("list1").innerHTML = localStorage.getItem("albumcollection");
- // } 
-
- //    storeItems();
-
-
+    //     document.getElementById("listOfAlbums").removeChild(removeid);
+    // }
 
 
     //function that binds click to all add buttons
@@ -165,32 +269,14 @@ var Module = (function() {
         for (let i = 0; i < removebuttons.length; i++) {
             removebuttons[i].addEventListener('click', function() {
                 removeAlbumInCollection(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
-            //removeAlbum(this.parentElement.parentElement.parentElement);
+                //removeAlbum(this.parentElement.parentElement.parentElement);
             })
         }
     }
 
 
-    // function cool () {
-    // 	console.log(bindClickRemove());
 
-    // }
-
-//     function loadingServer () {
-
-//     	$(document).ready(function(){
-//     $(document).ajaxStart(function(){
-//         $("#wait").css("display", "block");
-//     });
-//     $(document).ajaxComplete(function(){
-//         $("#wait").css("display", "none");
-//     });
-//     $("albumButton").click(function(){
-//         $("#list1").load("demo_ajax_load.asp");
-//     });
-// });
-
-//     }
+    // modal
 
     function modal() {
 
@@ -202,7 +288,6 @@ var Module = (function() {
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on the button, open the modal 
         btn.onclick = function() {
             modal.style.display = "block";
         }
@@ -223,8 +308,38 @@ var Module = (function() {
 
     modal();
 
+    // press enter for search
+
+    function pressEnterAlbum() {
+        document.getElementById("albumInput")
+            .addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode == 13) {
+                    document.getElementById("albumButton").click();
+                }
+            });
+
+    }
+     function pressEnterUser() {
+        document.getElementById("userInput")
+            .addEventListener("keyup", function(event) {
+                event.preventDefault();
+                if (event.keyCode == 13) {
+                    document.getElementById("userButton").click();
+                }
+            });
+
+    }
+
+    pressEnterAlbum();
+    pressEnterUser();
+
+
+
 
 
     let albumValue = document.getElementById("albumButton").addEventListener("click", showChosenAlbum);
+
+    let userValue = document.getElementById("userButton").addEventListener("click", showUserTopAlbum)
 
 })();
