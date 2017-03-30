@@ -1,14 +1,16 @@
 // API key: 596bfe5bae097e1c9f7dd354901bc20c
-//Module pattern
+/* Module pattern. Håller koden ganska ren, slipper this och prototype som annars kan fylla upp koden och göra den förvirrande. 
+Det som kan vara svårt med module pattern är att hantera de returns som de inre funktionsobjekten levererar. 
+Via namespacet (Module) kan vi komma åt de anonyma funktionerna inuti modulen. */
 
-var Module = (function() { 
+const Module = (function() { 
 
 	return {
 
     showChosenAlbum: () => {
         let albumValue = document.getElementById("albumInput").value;
 
-        //start load
+        //start load since nothing in progress loading gif appears
 
         $(document).ajaxStart(function() {
             $("#loadgif").show();
@@ -29,7 +31,6 @@ var Module = (function() {
                 dataType: 'JSON',
                 success: function(response) {
                     data = response;
-                    console.log(listOfAlbums);
                     listOfAlbums.innerHTML = "";
                     let albums = response.results.albummatches.album; //to shorten code in html chunk 
                     console.log(data);
@@ -58,9 +59,12 @@ var Module = (function() {
                         Module.getAlbumInfo(albums[i].artist, albums[i].name, i);
                     } //slut på for-loop
                     listOfAlbums.innerHTML = html;
+
+                    //apply button functions
                     Module.bindClick();
                     Module.bindClickRemove();
-                    //finish load 
+                   
+                   //finish load 
                     $(document).ajaxComplete(function() {
                         $("#loadgif").hide();
                     });
@@ -154,6 +158,7 @@ var Module = (function() {
             success: function(response) {
                 data = response;
                 console.log(data);
+                //get index and apply html dom 
                 let content = document.getElementById(i);
                 console.log(content);
                 content.innerHTML = "";
@@ -222,8 +227,6 @@ var Module = (function() {
         console.log(id);
         let getList = document.getElementById("list1");
         getList.appendChild(id);
-        console.log(localStorage.getItem('album'));
-
     },
 
     // function that removes album
