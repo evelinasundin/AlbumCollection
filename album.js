@@ -97,7 +97,7 @@ const Module = (function() {
 
             $.ajax({
                 method: 'GET',
-                url: 'https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=' + userValue + '&api_key=596bfe5bae097e1c9f7dd354901bc20c&format=json&limit=4',
+                url: 'https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=' + userValue + '&api_key=596bfe5bae097e1c9f7dd354901bc20c&format=json&limit=4+period=7day',
                 dataType: 'JSON',
                 success: function(response) {
                     data = response;
