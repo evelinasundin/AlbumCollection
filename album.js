@@ -1,8 +1,11 @@
 // API key: 596bfe5bae097e1c9f7dd354901bc20c
+//Module pattern
 
-var Module = (function() {
+var Module = (function() { 
 
-    let showChosenAlbum = function() {
+	return {
+
+    showChosenAlbum: () => {
         let albumValue = document.getElementById("albumInput").value;
 
         //start load
@@ -48,19 +51,19 @@ var Module = (function() {
 		<button class="addButton btn btn-secondary" id="${i}" type="button">Add to Collection</button>
 		<button class="removeButton btn btn-secondary" id="${i}" type="button">Remove</button>
 		</div>
-		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
+		<a href = "${albums[i].url}" target=newtab><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
 		</div>
 		</div>`;
                         //sends artist, album name and index as parameters to albuminfo 
-                        getAlbumInfo(albums[i].artist, albums[i].name, i);
+                        Module.getAlbumInfo(albums[i].artist, albums[i].name, i);
                     } //slut på for-loop
                     listOfAlbums.innerHTML = html;
-                    bindClick();
-                    bindClickRemove();
-//finish load 
-                    $(document).ajaxComplete(function () {
-   $("#loadgif").hide();
-});
+                    Module.bindClick();
+                    Module.bindClickRemove();
+                    //finish load 
+                    $(document).ajaxComplete(function() {
+                        $("#loadgif").hide();
+                    });
 
                 },
                 error: function(code, message) {
@@ -69,10 +72,10 @@ var Module = (function() {
             });
         } //slut på else 
 
-    }
+    },
 
 
-      let showUserTopAlbum = function() {
+    showUserTopAlbum: () => {
         let userValue = document.getElementById("userInput").value;
 
         $(document).ajaxStart(function() {
@@ -115,19 +118,19 @@ var Module = (function() {
 		<button class="addButton btn btn-secondary" id="${i}" type="button">Add to Collection</button>
 		<button class="removeButton btn btn-secondary" id="${i}" type="button">Remove</button>
 		</div>
-		<a href = "${albums[i].url}"><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
+		<a href = "${albums[i].url}" target=newtab><img src="img/play.svg" class="playLink content-center" height="50px" width="50px"></a> 
 		</div>
 		</div>`;
                         //sends artist and album name as parameters to albuminfo 
-                         getUserAlbumInfo(albums[i].artist.name, albums[i].name, i);
+                        Module.getUserAlbumInfo(albums[i].artist.name, albums[i].name, i);
                     } //slut på for-loop
                     listOfAlbums.innerHTML = html;
-                    bindClick();
-                    bindClickRemove();
+                    Module.bindClick();
+                   Module.bindClickRemove();
 
-                    $(document).ajaxComplete(function () {
-   $("#loadgif").hide();
-});
+                    $(document).ajaxComplete(function() {
+                        $("#loadgif").hide();
+                    });
 
                 },
                 error: function(code, message) {
@@ -136,17 +139,13 @@ var Module = (function() {
             });
         } //slut på else 
 
-    }
+    },
 
-
-    showUserTopAlbum();
-
-   
 
 
     // information when you hoover over image
 
-    let getAlbumInfo = function(artistValue, albumValue, i) {
+   getAlbumInfo: (artistValue, albumValue, i) => {
 
         $.ajax({
             method: 'GET',
@@ -176,11 +175,11 @@ var Module = (function() {
                 $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
             }
         });
-    }
+    },
 
-    	//user specified info when you hoover over image 
+    //user specified info when you hoover over image 
 
-       let getUserAlbumInfo = function(artistValue, albumValue, i) {
+    getUserAlbumInfo: (artistValue, albumValue, i) => {
 
         $.ajax({
             method: 'GET',
@@ -211,7 +210,7 @@ var Module = (function() {
                 $('#error').html('Error Code: ' + code + ', Error Message: ' + message);
             }
         });
-    }
+    },
 
 
 
@@ -219,66 +218,59 @@ var Module = (function() {
 
     //function that appends chosen album to list1 in 
 
-    let addToList = (function(id) {
+    addToList: (id) => {
         console.log(id);
         let getList = document.getElementById("list1");
         getList.appendChild(id);
         console.log(localStorage.getItem('album'));
 
-    })
+    },
 
     // function that removes album
 
-    let removeAlbumInCollection = function(removeid) {
+    removeAlbumInCollection: (removeid) => {
+
         console.log(removeid.parentElement);
 
         removeid.parentElement.removeChild(removeid);
 
-    }
-
-    // let removeAlbum = function(removeid) {
-    //     console.log(removeid);
-
-
-    //     document.getElementById("listOfAlbums").removeChild(removeid);
-    // }
+    },
 
 
     //function that binds click to all add buttons
 
-    function bindClick() {
+    bindClick: () => {
 
         //for addButton
 
         let addbuttons = document.getElementsByClassName('addButton');
         for (let i = 0; i < addbuttons.length; i++) {
             addbuttons[i].addEventListener('click', function() {
-                addToList(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
+                Module.addToList(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
             })
         }
 
-    }
+    },
 
 
     //function that binds click to all remove buttons
 
-
-    function bindClickRemove() {
+    bindClickRemove: () => {
 
         let removebuttons = document.getElementsByClassName('removeButton');
         for (let i = 0; i < removebuttons.length; i++) {
             removebuttons[i].addEventListener('click', function() {
-                removeAlbumInCollection(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
+                Module.removeAlbumInCollection(this.parentElement.parentElement); //hämtar parent elementet av wrapper-center där button ligger vilket är col-xs-12
                 //removeAlbum(this.parentElement.parentElement.parentElement);
             })
         }
-    }
+    },
 
 
 
     // modal
 
-    function modal() {
+    modal: () => {
 
         var modal = document.getElementById('myModal');
 
@@ -303,14 +295,14 @@ var Module = (function() {
                 modal.style.display = "none";
             }
         }
-    }
+    },
 
 
-    modal();
 
     // press enter for search
 
-    function pressEnterAlbum() {
+    pressEnterAlbum: () => {
+
         document.getElementById("albumInput")
             .addEventListener("keyup", function(event) {
                 event.preventDefault();
@@ -319,8 +311,9 @@ var Module = (function() {
                 }
             });
 
-    }
-     function pressEnterUser() {
+    },
+
+    pressEnterUser: () =>  {
         document.getElementById("userInput")
             .addEventListener("keyup", function(event) {
                 event.preventDefault();
@@ -329,17 +322,22 @@ var Module = (function() {
                 }
             });
 
-    }
+    },
 
-    pressEnterAlbum();
-    pressEnterUser();
+    init: () =>{
 
+    Module.pressEnterAlbum();
+    Module.pressEnterUser();
+    Module.showUserTopAlbum();
+    Module.modal();
 
+    let albumValue = document.getElementById("albumButton").addEventListener("click", Module.showChosenAlbum);
 
+    let userValue = document.getElementById("userButton").addEventListener("click", Module.showUserTopAlbum)
 
-
-    let albumValue = document.getElementById("albumButton").addEventListener("click", showChosenAlbum);
-
-    let userValue = document.getElementById("userButton").addEventListener("click", showUserTopAlbum)
+},
+};
 
 })();
+
+Module.init();
