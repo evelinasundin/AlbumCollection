@@ -8,7 +8,8 @@ https://evelinasundin.github.io/AlbumCollection/
 
 * jQuery ajax get() Method
 * Bootstrap
-* jQuery/VanillaJS/ES6 ⋅⋅* Module Pattern to structure code
+* VanillaJS/ES6/jQuery
+* Module pattern to structure code 
 * HTML DOM Manipulation
 * SASS
 
