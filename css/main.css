@@ -3,14 +3,14 @@ body {
 
 .logo {
   height: auto;
-  width: 80px;
-  margin-left: 30px; }
+  width: 5em;
+  margin-left: 1.875em; }
 
 .info {
   height: auto;
-  width: 30px;
-  margin-right: 20px;
-  margin-top: 20px; }
+  width: 1.875em;
+  margin-right: 1.25em;
+  margin-top: 1.25em; }
 
 #infoButton {
   background-color: transparent;
@@ -26,16 +26,16 @@ body {
 
 #userInput {
   width: 60%;
-  border-radius: 100px;
-  border: 1px #333 solid;
-  height: 40px;
+  border-radius: 6.25em;
+  border: 0.063em #333 solid;
+  height: 2.5em;
   text-align: center; }
 
 #albumInput {
   width: 60%;
-  border-radius: 100px;
-  border: 1px #333 solid;
-  height: 40px;
+  border-radius: 6.25em;
+  border: 0.063em #333 solid;
+  height: 2.5em;
   text-align: center; }
 
 #albumInput:active {
@@ -58,7 +58,7 @@ body {
 
 .row-centered {
   text-align: center;
-  margin-top: 20px; }
+  margin-top: 1.25em; }
 
 .col-centered {
   display: inline-block;
@@ -66,11 +66,11 @@ body {
   /* reset the text-align */
   text-align: left;
   /* inline-block space fix */
-  margin-right: -4px; }
+  margin-right: -0.25em; }
 
 .collectinfo {
   color: pink;
-  font-size: 30px; }
+  font-size: 1.875em; }
 
 .img-rounded {
   border-radius: 50%; }
@@ -99,20 +99,20 @@ body {
 
 .text-centered {
   text-align: center;
-  margin-top: 20px; }
+  margin-top: 1.25em; }
 
 h1 {
   text-align: center !important;
-  margin-bottom: 20px; }
+  margin-bottom: 1.25em; }
 
 .addButton {
   background-color: #333;
-  border: 2px solid #333;
+  border: 0.125em solid #333;
   color: white; }
 
 .removeButton {
   background-color: #333;
-  border: 2px solid #333;
+  border: 0.125em solid #333;
   color: white; }
 
 .wrapper-center {
@@ -120,14 +120,14 @@ h1 {
   text-align: -webkit-center; }
 
 .playLink {
-  margin-top: 20px;
+  margin-top: 1.25em;
   text-align: center; }
 
 /*overlay image*/
 .image-wrapper {
   position: relative;
-  height: 250px;
-  width: 250px;
+  height: 15.625em;
+  width: 15.625em;
   margin: 0 auto;
   border-radius: 100%;
   overflow: hidden; }
@@ -153,15 +153,15 @@ h1 {
   position: absolute;
   top: 50%;
   left: 50%;
-  height: 20px;
-  width: 150px;
-  margin-top: -10px;
-  margin-left: -75px; }
+  height: 1.25em;
+  width: 9.375em;
+  margin-top: -0.625em;
+  margin-left: -4.688em; }
 
 .texthover {
   text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px; }
+  margin-top: 0.313em;
+  margin-bottom: 0.313em; }
 
 .center-img {
   text-align: center; }
@@ -191,18 +191,17 @@ h1 {
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  /* Could be more or less, depending on screen size */ }
+  padding: 1.25em;
+  border: 0.063em solid #888;
+  width: 80%; }
 
 /* The Close Button */
 .close {
   color: #333;
   float: right;
-  font-size: 28px;
-  font-weight: bold; }
+  font-size: 1.75em;
+  font-weight: bold;
+  transition: 5s ease; }
 
 .close:hover,
 .close:focus {
@@ -217,7 +216,7 @@ h3 {
   text-align: center; }
 
 #loadgif {
-  height: 150px;
+  height: 9.375em;
   width: auto; }
 
 .text-center {
