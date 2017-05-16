@@ -1,59 +1,96 @@
+body {
+    overflow-x: hidden;
+}
+
 .logo {
     height: auto;
-    width: 80px;
-    margin-left: 30px;
+    width: 5em;
+    margin-left: 1.875em;
 }
+
 
 .info {
     height: auto;
-    width: 30px;
-    margin-right: 20px;
-    margin-top: 20px;
+    width: 1.875em;
+    margin-right: 1.25em;
+    margin-top: 1.25em;
 }
 
 #infoButton {
     background-color: transparent;
-       float: right;
-       border: none;
-
+    float: right;
+    border: none;
 }
 
 #infoButton:active {
-outline: none;
-border: none;
+    outline: none;
+    border: none;
 }
 
-#infoButton:focus {outline:0;}
+#infoButton:focus {
+    outline: 0;
+}
 
+#userInput {
+    width: 60%;
+    border-radius: 6.25em;
+    border: 0.063em #333 solid;
+    height: 2.5em;
+    text-align: center;
+}
 
 #albumInput {
- width: 60%;
+    width: 60%;
+    border-radius: 6.25em;
+    border: 0.063em #333 solid;
+    height: 2.5em;
+    text-align: center;
 }
+
+#albumInput:active {
+    outline: none;
+    border: none;
+}
+
+#albumInput:focus {
+    outline: 0;
+}
+
+#userInput:active {
+    outline: none;
+    border: none;
+}
+
+#userInput:focus {
+    outline: 0;
+}
+
 .inputField {
     text-align: center;
     text-align: -webkit-center;
 }
-  .row-centered {
-    text-align:center;
-    margin-top: 20px;
-}
-.col-centered {
-    display:inline-block;
-    float:none;
-    /* reset the text-align */
-    text-align:left;
-    /* inline-block space fix */
-    margin-right:-4px;
+
+.row-centered {
+    text-align: center;
+    margin-top: 1.25em;
 }
 
-.collectinfo  {
+.col-centered {
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -0.25em;
+}
+
+.collectinfo {
     color: pink;
-    font-size: 30px;
+    font-size: 1.875em;
 }
 
 .img-rounded {
     border-radius: 50%;
-    border: 3px #C65D5D solid;
 }
 
 #albumButton {
@@ -61,28 +98,179 @@ border: none;
     background-color: white;
 }
 
+#albumButton:active {
+    outline: none;
+    border: none;
+}
+
+#albumButton:focus {
+    outline: 0;
+}
+
+#userButton {
+    border: none;
+    background-color: white;
+}
+
+#userButton:active {
+    outline: none;
+    border: none;
+}
+
+#userButton:focus {
+    outline: 0;
+}
+
 .text-centered {
     text-align: center;
+    margin-top: 1.25em;
 }
 
 h1 {
     text-align: center !important;
-    margin-bottom: 20px;
+    margin-bottom: 1.25em;
 }
 
 .addButton {
     background-color: #333;
-    border: 2px solid #333;
+    border: 0.125em solid #333;
     color: white;
 }
 
 .removeButton {
-     background-color: #333;
-    border: 2px solid #333;
+    background-color: #333;
+    border: 0.125em solid #333;
     color: white;
 }
 
 .wrapper-center {
     text-align: center;
     text-align: -webkit-center;
+}
+
+.playLink {
+    margin-top: 1.25em;
+    text-align: center;
+}
+
+
+/*overlay image*/
+
+.image-wrapper {
+    position: relative;
+    height: 15.625em;
+    width: 15.625em;
+    margin: 0 auto;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    height: 100%;
+    width: 100%;
+}
+
+.image-wrapper .image-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(198, 93, 93, 0.85);
+    color: #fff;
+    display: none;
+}
+
+.image-wrapper:hover .image-overlay {
+    display: block;
+}
+
+.image-wrapper .image-overlay .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 1.25em;
+    width: 9.375em;
+    margin-top: -0.625em;
+    margin-left: -4.688em;
+}
+
+.texthover {
+    text-align: center;
+    margin-top: 0.313em;
+    margin-bottom: 0.313em;
+}
+
+.center-img {
+    text-align: center;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(198, 93, 93, 0.9);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 1.25em;
+    border: 0.063em solid #888;
+    width: 80%;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #333;
+    float: right;
+    font-size: 1.75em;
+    font-weight: bold;
+    transition: 5s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h5 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+#loadgif {
+    height: 9.375em;
+    width: auto;
+}
+
+.text-center {
+    text-align: center;
 }
