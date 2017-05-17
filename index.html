@@ -12,30 +12,29 @@
 
 <body>
     <!-- logo -->
-    <img class="logo" src="img/albumsync.png"></img>
-    <button id="infoButton"><img class="info" src="img/info.svg"></img>
+    <img class="logo" src="img/albumsync.png" alt="album-logo">
+    <button id="infoButton"><img class="info" src="img/info.svg" alt="info-btn-img">
     </button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <img height="60px" src="img/albumsync.png"></img>
+            <img height="60" src="img/albumsync.png" alt="albumsyncimg">
             <div class="text-center">
                 <h3>Welcome to Album Sync!</h3>
-                </br>
-                <p> Search any album or artist in the first input field to get albums sorted by relevance. To specify - write both artist and album.</br>
-                    Want to get personal? Type your lastfm username in the second input field to match your scrobbles with your most played album to be able to add these to your collection. </br> If you dont have a lastfm account. Get it <a href="https://www.last.fm/sv/join">here</a> and start scrobbling your music.</br>
-                    </br>
-                    Use the grey buttons to remove or add the albums to your collection. </br>
-                    If you hover over the albums you will recieve information on how many times the album has been played and also when the album was published. </br>
-                    See the pink play button? Press it and it will take you to lastfm's website from where you can see more information about the album and to listen to the music. </br>
-                    It's not harder than that! </br>
+                <br>
+                <p> Search any album or artist in the first input field to get albums sorted by relevance. To specify - write both artist and album.<br>
+                    Want to get personal? Type your lastfm username in the second input field to match your scrobbles with your most played album to be able to add these to your collection. <br> If you dont have a lastfm account. Get it <a href="https://www.last.fm/sv/join">here</a> and start scrobbling your music.<br>
+                    <br>
+                    Use the grey buttons to remove or add the albums to your collection. <br>
+                    If you hover over the albums you will recieve information on how many times the album has been played and also when the album was published. <br>
+                    See the pink play button? Press it and it will take you to lastfm's website from where you can see more information about the album and to listen to the music. <br>
+                    It's not harder than that! <br>
                     <h3>Enjoy!</h3>
-                    </br>
-                    </br>
+                    <br>
+                    <br>
                     <p> This is a student project by Evelina Sundin where the assignment was to create an application using an API.</p>
-                </p>
             </div>
         </div>
     </div>
@@ -43,18 +42,17 @@
     <h5> Search album or artist, to specify - type both:</h5>
     <div class="inputField">
         <input type="text" id="albumInput" maxlength="70" placeholder="Search...">
-        <button id="albumButton"><img height="20px" width="20px" src="img/search.svg"></button>
+        <button id="albumButton"><img height="20" width="20" src="img/search.svg" alt="searchimg"></button>
     </div>
     <h5> Type your username to get your most listened albums: </h5>
     <div class="inputField">
         <input type="text" id="userInput" maxlength="70" placeholder="Username...">
-        <button id="userButton"><img height="20px" width="20px" src="img/search.svg"></button>
+        <button id="userButton"><img height="20" width="20" src="img/search.svg" alt="searchimg"></button>
     </div>
     <!-- album collection -->
     <div class="row row-centered">
         <div class="d-flex" id="listOfAlbums"> </div>
-        <img id="loadgif" src="img/Loading_icon.gif" style="display: none;">
-    </div>
+        <img id="loadgif" src="img/Loading_icon.gif" style="display: none;" alt="loadingindicator">
     </div>
     <section>
         <div class="row row-centered">
@@ -62,10 +60,9 @@
             <div id="list1"></div>
         </div>
     </section>
-</body>
-<!-- Javascript and jquery -->
+    <!-- Javascript and jquery -->
 <script src="https://code.jquery.com/jquery-2.2.1.js" integrity="sha256-eNcUzO3jsv0XlJLveFEkbB8bA7/CroNpNVk3XpmnwHc=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="album.js"></script>
-
+</body>
 </html>
